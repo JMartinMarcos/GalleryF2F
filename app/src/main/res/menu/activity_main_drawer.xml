@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Import" />
+        <item
+            android:id="@+id/nav_camaraSD"
+            android:icon="@drawable/micro_sd_48"
+            android:title="@string/c_mara_en_sd" />
+        <item
+            android:id="@+id/nav_whatsapp"
+            android:icon="@drawable/whatsapp_50"
+            android:title="whatsapp" />
+        <item
+            android:id="@+id/nav_instagram"
+            android:icon="@drawable/instagram_48"
+            android:title="instagram" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

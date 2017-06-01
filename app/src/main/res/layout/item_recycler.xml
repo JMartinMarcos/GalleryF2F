@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvGall"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    card_view:cardCornerRadius="@dimen/cardview_default_radius"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="2dp"
+                  android:background="@android:color/black"
+        >
+
+        <ImageView
+            android:id="@+id/imageCard"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:background="@android:color/black"
+            android:scaleType="centerCrop"
+            android:src="@drawable/old_camera"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

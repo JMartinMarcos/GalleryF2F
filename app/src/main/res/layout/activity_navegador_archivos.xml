@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.practica.jmm.galleryf2f.Navegador_archivos"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:elevation="4dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left">
+
+            <ImageView
+                android:id="@+id/imv_ico_toolbar2"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/pictures_nikon_icon" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txv_toolbar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Buscar Galeria"
+            android:textColor="@color/Blanco"
+            android:textSize="@dimen/titulo"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+
+<LinearLayout
+    android:id="@+id/activity_navegador_archivos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp"
+    android:orientation="vertical"
+    android:background="@android:color/black">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lst_navegador"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:animationCache="true"
+            android:filterTouchesWhenObscured="false"
+            android:isScrollContainer="true" />
+
+    <Button
+        android:id="@+id/btnGuardarGall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/guardar_ubicaci_n"
+        android:theme="@style/BotonRaised" />
+
+</LinearLayout>
+</LinearLayout>

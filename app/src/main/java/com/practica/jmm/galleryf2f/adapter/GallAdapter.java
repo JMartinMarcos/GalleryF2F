@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.practica.jmm.galleryf2f.FullscreenActivity;
 import com.practica.jmm.galleryf2f.R;
+import com.practica.jmm.galleryf2f.pojo.Carpetas;
 import com.practica.jmm.galleryf2f.pojo.Foto;
 import java.util.ArrayList;
 
@@ -83,4 +84,10 @@ public class GallAdapter extends RecyclerView.Adapter<GallAdapter.GallViewHolder
         }
     }
 
+    public void updateData(ArrayList<Foto> lista){
+        fotos.clear();
+        fotos.addAll(lista);
+        notifyDataSetChanged();
     }
+
+}

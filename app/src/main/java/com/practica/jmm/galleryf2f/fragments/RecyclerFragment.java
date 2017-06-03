@@ -3,10 +3,12 @@ package com.practica.jmm.galleryf2f.fragments;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 public class RecyclerFragment extends android.app.Fragment implements IRecycler{
 
     private RecyclerView galleryFoto;
+    GallAdapter gallAdapter;
 
     public RecyclerFragment() {
     }
@@ -56,7 +59,7 @@ public class RecyclerFragment extends android.app.Fragment implements IRecycler{
 
     @Override
     public GallAdapter crearAdaptador(ArrayList<Foto> fotos) {
-        GallAdapter gallAdapter = new GallAdapter(fotos,getActivity());
+         gallAdapter = new GallAdapter(fotos,getActivity());
         return gallAdapter;
     }
 
@@ -67,11 +70,10 @@ public class RecyclerFragment extends android.app.Fragment implements IRecycler{
 
     public ArrayList<Foto> cargaDirectorio(){
 
-        if (VariablesGlobales.PATH_GALL == "") VariablesGlobales.PATH_GALL = VariablesGlobales.PATH_INTERNAL_GALL;
+        if (VariablesGlobales.PATH_GALL.isEmpty()) VariablesGlobales.PATH_GALL = VariablesGlobales.PATH_INTERNAL_GALL;
 
-
-
-        String aaa = Environment.MEDIA_REMOVED;
+        String aaa = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
+        Log.i("Jorge", "PATH CARPETA FOTOS: " + aaa);
 
         ArrayList<Foto> fotos = new ArrayList<>();
         File dir = new File(VariablesGlobales.PATH_GALL);
@@ -87,6 +89,12 @@ public class RecyclerFragment extends android.app.Fragment implements IRecycler{
             }
         }
         return fotos;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        gallAdapter.updateData(cargaDirectorio());
     }
 }
 

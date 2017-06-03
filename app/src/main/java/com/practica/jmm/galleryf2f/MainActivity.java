@@ -5,26 +5,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -38,19 +27,12 @@ import com.practica.jmm.galleryf2f.fragments.RecyclerFragment;
 import com.practica.jmm.galleryf2f.pojo.Carpetas;
 import com.practica.jmm.galleryf2f.pojo.ConstructorCarpetas;
 
-import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
+
 
 import butterknife.Bind;
 
-import static android.app.Notification.EXTRA_TITLE;
+import static com.practica.jmm.galleryf2f.R.style.AppTheme;
 
 public class MainActivity extends BaseActivity {
 
@@ -75,18 +57,16 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-/*
-        GetAllSds sd = new GetAllSds();
 
-        ArrayList<String> pathSD = sd.obtenerRutas();
-         for(String s:pathSD){
-            VariablesGlobales.PATH_RAIZ_EXTERNAL_SD = s;
-        }
-*/
         solicitarPermisos();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            toolbar.setBackgroundColor(getColor(android.R.color.transparent));
+        }else{
+            toolbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        }
+        //      getResources().getColor(android.R.color.transparent));
         //       toolbar.setVisibility(View.INVISIBLE);
 
 //        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_IMAGE);
@@ -125,7 +105,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
     public void solicitarPermisos(){
         final int PERMISO_STORAGE_READ = 1;
         final int MI_PERMISO_STORAGE2 = 2;
@@ -145,7 +124,6 @@ public class MainActivity extends BaseActivity {
         }
 
 /*
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -230,8 +208,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public NavAdapterRV crearAdaptador(ArrayList<Carpetas> carpetas) {
-        NavAdapterRV adaptador = new NavAdapterRV(carpetas,this);
-        return adaptador;
+        return new NavAdapterRV(carpetas,this);
     }
 
     public void inicializaeAdaptador(NavAdapterRV gAdaptador) {

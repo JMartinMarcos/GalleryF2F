@@ -15,7 +15,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="@color/black_overlay">
         <android.support.v4.view.ViewPager
             android:id="@+id/viewppager"
             android:layout_height="match_parent"
@@ -26,9 +27,13 @@
             style="?metaButtonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black_overlay"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
+            <Button
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
             <Button
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="30dp"
@@ -59,6 +64,11 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"/>
             <Button
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
+            <Button
                 android:id="@+id/btn_shared"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="30dp"
@@ -66,7 +76,12 @@
                 android:background="@drawable/share_48"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:onClick="compartirImagen"/>
+                />
+            <Button
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
             <Button
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="30dp"

@@ -13,10 +13,14 @@ public class Foto implements Parcelable{
 
     private String imagen;
     private String nombre;
+    private Long fechUltMod;
+
 
     public Foto(Parcel in) {
         imagen = in.readString();
         nombre = in.readString();
+        fechUltMod = in.readLong();
+
     }
 
     public static final Creator<Foto> CREATOR = new Creator<Foto>() {
@@ -47,6 +51,14 @@ public class Foto implements Parcelable{
         this.nombre = nombre;
     }
 
+    public Long getFechUltMod() {
+        return fechUltMod;
+    }
+
+    public void setFechUltMod(Long fechUltMod) {
+        this.fechUltMod = fechUltMod;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -56,5 +68,6 @@ public class Foto implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(imagen);
         parcel.writeString(nombre);
+        parcel.writeLong(fechUltMod);
     }
 }

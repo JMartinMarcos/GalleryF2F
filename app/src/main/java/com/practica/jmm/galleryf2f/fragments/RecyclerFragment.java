@@ -1,9 +1,9 @@
 package com.practica.jmm.galleryf2f.fragments;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +22,8 @@ import com.practica.jmm.galleryf2f.pojo.Foto;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
@@ -71,10 +73,22 @@ public class RecyclerFragment extends android.app.Fragment implements IRecycler{
     public ArrayList<Foto> cargaDirectorio(){
 
         if (VariablesGlobales.PATH_GALL.isEmpty()) VariablesGlobales.PATH_GALL = VariablesGlobales.PATH_INTERNAL_GALL;
-
+/*
         String aaa = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
         Log.i("Jorge", "PATH CARPETA FOTOS: " + aaa);
-
+        String myDeviceModel = Build.MANUFACTURER;
+        String deices = Build.DEVICE;
+        String bbb = Build.MODEL;
+        String bcb = Build.PRODUCT;
+        String rrr = Build.DISPLAY;
+        String wqwq = Build.FINGERPRINT;
+        String jjj = Build.TYPE;
+        String oop = Build.TAGS;
+        String jkjkj = Build.USER;
+        String rewwq = Build.BRAND;
+        String gggt= Build.HARDWARE;
+        Log.i("BUILDS : " , myDeviceModel + deices + bbb + bcb + rrr + wqwq + jjj + oop + jkjkj + rewwq + gggt);
+*/
         ArrayList<Foto> fotos = new ArrayList<>();
         File dir = new File(VariablesGlobales.PATH_GALL);
 
@@ -85,8 +99,17 @@ public class RecyclerFragment extends android.app.Fragment implements IRecycler{
                 Foto foto = new Foto();
                 foto.setImagen(f.getAbsolutePath());
                 foto.setNombre(f.getName());
+                foto.setFechUltMod(f.lastModified());
                 fotos.add(foto);
             }
+
+            Collections.sort(fotos, new Comparator<Foto>() {
+                @Override
+                public int compare(Foto o1, Foto o2) {
+
+                    return new Long(o2.getFechUltMod()).compareTo(new Long(o1.getFechUltMod()));
+                }
+            });
         }
         return fotos;
     }

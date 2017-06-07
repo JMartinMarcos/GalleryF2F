@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 
+import com.practica.jmm.galleryf2f.FiltroImage;
 import com.practica.jmm.galleryf2f.R;
 import com.practica.jmm.galleryf2f.VariablesGlobales;
 import com.practica.jmm.galleryf2f.db.BaseDatos;
@@ -12,6 +13,7 @@ import com.practica.jmm.galleryf2f.db.ConstantesBaseDatos;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by sath on 1/05/17.
@@ -33,37 +35,48 @@ public class ConstructorCarpetas {
         return db.obtenerTodasCarpetas();
     }
 
-    private void cargaInicialCarpetas(BaseDatos db){
+    private void cargaInicialCarpetas(BaseDatos db) {
         ContentValues values = new ContentValues();
 
-        File intSd = new File(VariablesGlobales.PATH_INTERNAL_GALL);
-        if(intSd.exists() && Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+        int i = 0;
 
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "SD CAMARA");
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, VariablesGlobales.PATH_INTERNAL_GALL);
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.hdd_grey_256);
-            db.InsertarCarpeta(values);
-        }
+        if (Build.MANUFACTURER.contentEquals("Sony")) {
+
         File extSd = new File(VariablesGlobales.PATH_RAIZ_EXTERNAL_SD_GALL);
-        if(extSd.exists() && Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+
+        if (extSd.exists()) {
+            for (File b : extSd.listFiles(new FiltroImage())) {
+                i++;
+            }
+        }
+
+        if (i > 0) {
 
             values = new ContentValues();
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "SD CAMARA");
+            values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "EXT-SD CAMARA");
             values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, VariablesGlobales.PATH_RAIZ_EXTERNAL_SD_GALL);
             values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.micro_sd_48);
             db.InsertarCarpeta(values);
         }
 
-        File intSd7 = new File(VariablesGlobales.PATH_INTERNAL_GALL);
-        if(intSd7.exists() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ) {
+            File intSd = new File(VariablesGlobales.PATH_INTERNAL_GALL);
+            if (intSd.exists()) {
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "SD CAMARA");
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, VariablesGlobales.PATH_INTERNAL_GALL);
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.hdd_grey_256);
+                db.InsertarCarpeta(values);
+            }
+    }else{
 
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "SD CAMARA");
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, VariablesGlobales.PATH_INTERNAL_GALL_7);
-            values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.hdd_grey_256);
-            db.InsertarCarpeta(values);
-        }
         File extSd7 = new File(VariablesGlobales.PATH_RAIZ_EXTERNAL_SD_GALL);
-        if(extSd7.exists() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        i = 0;
+        if (extSd7.exists()) {
+            for (File d : extSd7.listFiles(new FiltroImage())) {
+                i++;
+            }
+        }
+
+        if (i > 0) {
             values = new ContentValues();
             values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "EXT-SD CAMARA");
             values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, VariablesGlobales.PATH_RAIZ_EXTERNAL_SD_GALL_7);
@@ -71,10 +84,18 @@ public class ConstructorCarpetas {
             db.InsertarCarpeta(values);
         }
 
-
+            File intSd7 = new File(VariablesGlobales.PATH_INTERNAL_GALL);
+            i = 0;
+            if (intSd7.exists()) {
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "SD CAMARA");
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, VariablesGlobales.PATH_INTERNAL_GALL_7);
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.hdd_grey_256);
+                db.InsertarCarpeta(values);
+            }
+    }
 
         File wshApp = new File(VariablesGlobales.PATH_WHATSAPP_GALL);
-        if(wshApp.exists()) {
+        if (wshApp.exists()) {
 
             values = new ContentValues();
             values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "WHATSAPP");
@@ -82,6 +103,8 @@ public class ConstructorCarpetas {
             values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.whatsapp_50);
             db.InsertarCarpeta(values);
         }
+
+
 /*
         values = new ContentValues();
         values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, "INSTAGRAM" );

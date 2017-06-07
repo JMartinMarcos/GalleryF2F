@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 
+import static android.media.CamcorderProfile.get;
 import static com.practica.jmm.galleryf2f.R.style.AppTheme;
 
 public class MainActivity extends BaseActivity {
@@ -61,11 +62,15 @@ public class MainActivity extends BaseActivity {
         solicitarPermisos();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+
+ /*       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             toolbar.setBackgroundColor(getColor(android.R.color.transparent));
         }else{
-            toolbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-        }
+ */
+            //toolbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            toolbar.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+ //       }
         //      getResources().getColor(android.R.color.transparent));
         //       toolbar.setVisibility(View.INVISIBLE);
 
@@ -79,11 +84,16 @@ public class MainActivity extends BaseActivity {
         String itemTitle = getIntent().getStringExtra(EXTRA_TITLE);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(itemTitle);
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, android.R.color.transparent));
 
+        ArrayList<Carpetas> defaultDir = cargaDirectorio();
+
+        if (defaultDir.size()>0) {
+            VariablesGlobales.PATH_GALL = defaultDir.get(0).getPath();
+        }
 
         generaLinearLayaut();
-        inicializaeAdaptador(crearAdaptador(cargaDirectorio()));
+        inicializaeAdaptador(crearAdaptador(defaultDir));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

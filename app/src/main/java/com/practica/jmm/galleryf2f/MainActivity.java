@@ -19,21 +19,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.practica.jmm.galleryf2f.adapter.NavAdapterRV;
 import com.practica.jmm.galleryf2f.adapter.SampleDivider;
 import com.practica.jmm.galleryf2f.decoration.HeaderDecoration;
 import com.practica.jmm.galleryf2f.fragments.RecyclerFragment;
 import com.practica.jmm.galleryf2f.pojo.Carpetas;
 import com.practica.jmm.galleryf2f.pojo.ConstructorCarpetas;
-
 import java.util.ArrayList;
-
-
 import butterknife.Bind;
-
-import static android.media.CamcorderProfile.get;
-import static com.practica.jmm.galleryf2f.R.style.AppTheme;
 
 public class MainActivity extends BaseActivity {
 
@@ -49,10 +42,9 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.rv_navigator)
     RecyclerView listaArch;
 
-    private static final String EXTRA_IMAGE = "com.antonioleiva.materializeyourapp.extraImage";
-    private static final String EXTRA_TITLE = "com.antonioleiva.materializeyourapp.extraTitle";
+    private static final String EXTRA_TITLE = "GallF2F";
     private CollapsingToolbarLayout collapsingToolbarLayout;
-
+    boolean drawerSpanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +55,7 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
- /*       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            toolbar.setBackgroundColor(getColor(android.R.color.transparent));
-        }else{
- */
-            //toolbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-            toolbar.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
- //       }
-        //      getResources().getColor(android.R.color.transparent));
-        //       toolbar.setVisibility(View.INVISIBLE);
-
-//        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_IMAGE);
-//        supportPostponeEnterTransition();
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -93,7 +73,8 @@ public class MainActivity extends BaseActivity {
         }
 
         generaLinearLayaut();
-        inicializaeAdaptador(crearAdaptador(defaultDir));
+        final NavAdapterRV navAdapterRV = crearAdaptador(defaultDir);
+        inicializaeAdaptador(navAdapterRV);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,21 +84,46 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+
+        final  View trashView= findViewById(R.id.secondaryContentFrameLayout);
+
+
+        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.addDrawerListener(toggle);
-        //drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-       // navigationView.setNavigationItemSelectedListener(this);
         setFragment();
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
 
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                drawerSpanded = true;
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                drawerSpanded = false;
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
     }
+
+
 
     public void solicitarPermisos(){
         final int PERMISO_STORAGE_READ = 1;
-        final int MI_PERMISO_STORAGE2 = 2;
+    //    final int MI_PERMISO_STORAGE2 = 2;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
         //    SystemClock.sleep(5000);
@@ -154,6 +160,16 @@ public class MainActivity extends BaseActivity {
             }
         }
         */
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawerSpanded) {
+            drawer.closeDrawers();
+        }else{
+            super.onBackPressed();
+        }
     }
 
     @Override

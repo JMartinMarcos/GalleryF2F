@@ -59,7 +59,7 @@ public class GallAdapter extends RecyclerView.Adapter<GallAdapter.GallViewHolder
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 
-                    activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity,view,"").toBundle());
+                    activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity,view,view.getTransitionName()).toBundle());
 
                 }else {
                     activity.startActivity(intent);

@@ -45,6 +45,22 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
         SHOWING_SECONDARY_CONTENT
     }
 
+    /*
+    public boolean getNavState() {
+
+        int i = 0;
+        boolean trash = true;
+        while (i< mItemSwipedStates.size()){
+            if(mItemSwipedStates.get(i).compareTo(SwipedState.SHOWING_SECONDARY_CONTENT) == 0){
+                trash = false;
+                i = mItemSwipedStates.size();
+            }
+            i++;
+        }
+
+        return trash;
+    }
+*/
     private List<SwipedState> mItemSwipedStates;
 
 
@@ -132,11 +148,11 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
 
             switch (position) {
                 case 0:
-                 mItemSwipedStates.set(position, SwipedState.SHOWING_SECONDARY_CONTENT);
+
+                   mItemSwipedStates.set(position, SwipedState.SHOWING_SECONDARY_CONTENT);
 
                  break;
                 case 1:
-
                     mItemSwipedStates.set(position, SwipedState.SHOWING_PRIMARY_CONTENT);
 
                   break;
@@ -203,6 +219,13 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
 
     }
 
+
+    private void reiniciaRecycler() {
+       // mItemSwipedStates.clear();
+        for (int i = 0; i <= gestorArchivos.size(); i++) {
+            mItemSwipedStates.set(i, SwipedState.SHOWING_PRIMARY_CONTENT);
+        }
+    }
 
     @Override
     public int getItemCount() {

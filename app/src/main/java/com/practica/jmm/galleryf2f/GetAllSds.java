@@ -45,7 +45,10 @@ public class GetAllSds {
                     try {
                         System.out.println("Canocial :"
                                 + fd.getCanonicalPath().toString()); // Esta seria la ruta original
+
                         toAdd = fd.getCanonicalPath().toString();
+                       // toAdd = fd.getAbsolutePath();
+
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -67,10 +70,11 @@ public class GetAllSds {
         ArrayList<Carpetas> carpetas = new ArrayList<>();
 
         for(String sd:tmp) {
+            File file = new File(sd);
             Carpetas extSD = new Carpetas();
             extSD.setIcono(R.drawable.hdd_usb_256);
             extSD.setPath(sd);
-            extSD.setNombre(sd);
+            extSD.setNombre(file.getName());
             carpetas.add(extSD);
         }
 

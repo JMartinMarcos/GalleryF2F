@@ -42,6 +42,7 @@
             android:textAlignment="center"
             android:paddingTop="16dp"
             android:layout_marginLeft="5dp"
+            android:maxLines="1"
             android:textColor="@color/Blanco"/>
         </LinearLayout>
 

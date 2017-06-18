@@ -145,17 +145,13 @@ public class FotoFragment extends Fragment {
                 .load(foto)
                 .into(fotoGall);
 
-        fotoGall.setOnLongClickListener(new View.OnLongClickListener() {
+        fotoGall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-
-  //              Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-    //                    .setAction("Action", null).show();
+            public void onClick(View v) {
                 toggle();
 
-                return false;
-            }
-        });
+            }});
+
         return v;
     }
 

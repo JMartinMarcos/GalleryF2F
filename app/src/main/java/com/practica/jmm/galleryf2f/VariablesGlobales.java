@@ -28,6 +28,7 @@ public class VariablesGlobales {
         }
     }
 
+    public static boolean FOLDER_TRASH = false;
 
     public static String PATH_GALL = "";
     public static final String PATH_RAIZ_INTERNAL = Environment.getExternalStorageDirectory().toString();

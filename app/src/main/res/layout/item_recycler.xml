@@ -22,7 +22,8 @@
             android:layout_height="135dp"
             android:background="@android:color/black"
             android:scaleType="centerCrop"
-            android:src="@drawable/old_camera"/>
+            android:src="@drawable/old_camera"
+            android:transitionName="Slideup"/>
 
     </LinearLayout>
 

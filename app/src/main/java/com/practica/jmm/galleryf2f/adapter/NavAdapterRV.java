@@ -108,7 +108,7 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
         TextView ruta= (TextView) holder.mView.findViewById(R.id.text_nav);
         LinearLayout linear= (LinearLayout) holder.mView.findViewById(R.id.cv_navigator);
         ImageButton botonBorrado = (ImageButton) holder.mView.findViewById(R.id.btn1);
-        ViewPager viewPager = (ViewPager) holder.mView.findViewById(R.id.viewPagerRecycler);
+        final ViewPager viewPager = (ViewPager) holder.mView.findViewById(R.id.viewPagerRecycler);
 
 
         final Carpetas carpeta = gestorArchivos.get(position);
@@ -140,25 +140,36 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
 
     viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
         int previousPagePosition = 0;
-
+        int i=0;
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-         if (position == previousPagePosition)
-             return;
+         if (position == previousPagePosition){
+             if(position==0){
+                 if(i<=3){
+                     i++;
+                     return;
+                 }
+             }else{
+                 return;
+             }
+             }
 
             switch (position) {
                 case 0:
 
                    mItemSwipedStates.set(position, SwipedState.SHOWING_SECONDARY_CONTENT);
+                    viewPager.setCurrentItem(1);
 
                  break;
                 case 1:
                     mItemSwipedStates.set(position, SwipedState.SHOWING_PRIMARY_CONTENT);
+                    //viewPager.setCurrentItem(2);
 
                   break;
 
             }
             previousPagePosition = position;
+            i=0;
       }
 
      @Override

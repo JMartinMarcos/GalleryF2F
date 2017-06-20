@@ -19,7 +19,7 @@
         app:layout_scrollFlags="scroll|enterAlways"
         android:elevation="4dp"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        tools:ignore="UnusedAttribute">
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,14 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/buscar_galeria"
+            android:text="Buscar Galeria"
             android:textColor="@color/Blanco"
             android:textSize="@dimen/titulo"
             android:textStyle="bold"
-            tools:ignore="SpUsage" />
+            tools:ignore="HardcodedText,SpUsage" />
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+<LinearLayout
     android:id="@+id/activity_navegador_archivos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -57,8 +57,7 @@
     android:paddingRight="5dp"
     android:paddingTop="10dp"
     android:orientation="vertical"
-    android:background="@android:color/black"
-        >
+    android:background="@android:color/black">
 
     <include layout="@layout/content_arch" />
 
@@ -70,6 +69,6 @@
         android:text="@string/guardar_ubicaci_n"
         android:theme="@style/BotonRaised" />
 
-    </LinearLayout>
+</LinearLayout>
 
 </LinearLayout>

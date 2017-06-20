@@ -9,6 +9,8 @@ import android.os.SystemClock;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +25,7 @@ import com.practica.jmm.galleryf2f.adapter.NavAdapterRV;
 import com.practica.jmm.galleryf2f.adapter.SampleDivider;
 import com.practica.jmm.galleryf2f.decoration.HeaderDecoration;
 import com.practica.jmm.galleryf2f.fragments.RecyclerFragment;
+import com.practica.jmm.galleryf2f.fragments.TreeFiles;
 import com.practica.jmm.galleryf2f.pojo.Carpetas;
 import com.practica.jmm.galleryf2f.pojo.ConstructorCarpetas;
 import java.util.ArrayList;
@@ -85,7 +88,7 @@ public class MainActivity extends BaseActivity {
         });
 
 
-        final  View trashView= findViewById(R.id.secondaryContentFrameLayout);
+       // final  View trashView= findViewById(R.id.secondaryContentFrameLayout);
 
 
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -118,8 +121,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
-
 
     public void solicitarPermisos(){
         final int PERMISO_STORAGE_READ = 1;

@@ -13,6 +13,8 @@ public class ViewPagerAdapterRecycler extends PagerAdapter{
 
         public Object instantiateItem(ViewGroup collection, int position) {
 
+           // int resto = position % 2;
+
             int resId = 0;
             switch (position) {
                 case 0:

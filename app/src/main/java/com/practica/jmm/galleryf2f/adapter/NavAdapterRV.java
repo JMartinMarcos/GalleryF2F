@@ -45,22 +45,6 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
         SHOWING_SECONDARY_CONTENT
     }
 
-    /*
-    public boolean getNavState() {
-
-        int i = 0;
-        boolean trash = true;
-        while (i< mItemSwipedStates.size()){
-            if(mItemSwipedStates.get(i).compareTo(SwipedState.SHOWING_SECONDARY_CONTENT) == 0){
-                trash = false;
-                i = mItemSwipedStates.size();
-            }
-            i++;
-        }
-
-        return trash;
-    }
-*/
     private List<SwipedState> mItemSwipedStates;
 
 
@@ -90,8 +74,6 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
          ViewPager v = (ViewPager) LayoutInflater.from(parent.getContext())
                  .inflate(R.layout.cardview_navigator,parent,false);
 
-  //      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_navigator,parent,false);
-
         ViewPagerAdapterRecycler adapter = new ViewPagerAdapterRecycler();
 
         ((ViewPager) v.findViewById(R.id.viewPagerRecycler)).setAdapter(adapter);
@@ -108,6 +90,7 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
         TextView ruta= (TextView) holder.mView.findViewById(R.id.text_nav);
         LinearLayout linear= (LinearLayout) holder.mView.findViewById(R.id.cv_navigator);
         ImageButton botonBorrado = (ImageButton) holder.mView.findViewById(R.id.btn1);
+        ImageButton backpager = (ImageButton) holder.mView.findViewById(R.id.btn_back);
         final ViewPager viewPager = (ViewPager) holder.mView.findViewById(R.id.viewPagerRecycler);
 
 
@@ -123,19 +106,20 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
 
- //               Snackbar.make(view, "Carpeta guardada en menu de navegacion", Snackbar.LENGTH_LONG)
- //                       .setAction("Action", null).show();
             }
         });
-
+        backpager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(1);
+            }
+        });
 
         Glide.with(activity)
                 .load(carpeta.getIcono())
                 .into(imgImagen);
 
         ruta.setText(carpeta.getNombre());
-
- //       ((ViewPager) holder.mView).setCurrentItem(mItemSwipedStates.get(position).ordinal());
         viewPager.setCurrentItem(1);
 
     viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -144,21 +128,21 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
          if (position == previousPagePosition){
-             if(position==0){
+         /*    if(position==0){
                  if(i<=3){
                      i++;
                      return;
                  }
-             }else{
+             }else{*/
                  return;
-             }
+         //    }
              }
 
             switch (position) {
                 case 0:
 
                    mItemSwipedStates.set(position, SwipedState.SHOWING_SECONDARY_CONTENT);
-                    viewPager.setCurrentItem(1);
+                  //  viewPager.setCurrentItem(1);
 
                  break;
                 case 1:
@@ -169,7 +153,7 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
 
             }
             previousPagePosition = position;
-            i=0;
+           // i=0;
       }
 
      @Override
@@ -183,40 +167,6 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
        }
     });
 
-        /*
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            int previousPagePosition = 0;
-
-            @Override
-            public void onPageScrolled(int pagePosition, float positionOffset, int positionOffsetPixels) {
-                if (pagePosition == previousPagePosition)
-                    return;
-
-                switch (pagePosition) {
-                    case 0:
-                        mItemSwipedStates.set(position, SwipedState.SHOWING_SECONDARY_CONTENT);
-
-                        break;
-                    case 1:
-
-                        mItemSwipedStates.set(position, SwipedState.SHOWING_PRIMARY_CONTENT);
-
-                        break;
-
-                }
-                previousPagePosition = pagePosition;
-            }
-                @Override
-                public void onPageSelected(int pagePosition) {
-                    //This method keep incorrectly firing as the RecyclerView scrolls.
-                    //Use the one above instead
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-                }
-            });
-*/
         linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,14 +178,6 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
             }
         });
 
-    }
-
-
-    private void reiniciaRecycler() {
-       // mItemSwipedStates.clear();
-        for (int i = 0; i <= gestorArchivos.size(); i++) {
-            mItemSwipedStates.set(i, SwipedState.SHOWING_PRIMARY_CONTENT);
-        }
     }
 
     @Override
@@ -260,9 +202,7 @@ public class NavAdapterRV extends RecyclerView.Adapter<NavAdapterRV.NavViewHolde
         fragmentManager = activity.getFragmentManager();
         //getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-
         RecyclerFragment iRecycler = new RecyclerFragment();
-
         fragmentTransaction.replace(R.id.content_main, iRecycler);
         fragmentTransaction.commit();
     }

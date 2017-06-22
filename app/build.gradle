@@ -15,8 +15,8 @@ android {
         applicationId "com.practica.jmm.galleryf2f"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 3
-        versionName "0.03b"
+        versionCode 4
+        versionName "0.04b"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.Firma
     }

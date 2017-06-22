@@ -172,7 +172,7 @@ public class TreeFiles extends Fragment implements ITreeFilesRecycler{
                 if (archivo.isFile()) {
                     ls.setIcono(R.drawable.bmp_file_256);
                 } else {
-                    ls.setIcono(R.drawable.open_folder_40);
+                    ls.setIcono(R.drawable.folder_blue);
                 }
                 ls.setPath(archivo.getAbsolutePath());
 

@@ -68,11 +68,14 @@ public class GetAllSds {
     public ArrayList<Carpetas> getCarpetasSds(ArrayList<String> tmp) {
 
         ArrayList<Carpetas> carpetas = new ArrayList<>();
+        int icon = R.drawable.hdd_graphite_server_b_256;
+        int i = 0;
 
         for(String sd:tmp) {
+            if (i>0) icon = R.drawable.hdd_usb_256;
             File file = new File(sd);
             Carpetas extSD = new Carpetas();
-            extSD.setIcono(R.drawable.hdd_usb_256);
+            extSD.setIcono(icon);
             extSD.setPath(sd);
             extSD.setNombre(file.getName());
             carpetas.add(extSD);

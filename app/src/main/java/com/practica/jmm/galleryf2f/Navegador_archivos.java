@@ -53,7 +53,7 @@ public class Navegador_archivos extends BaseActivity{
                 File fil = new File(PATH_ARCH);
                 values.put(ConstantesBaseDatos.TABLE_CARPETA_NOMBRE, fil.getName());
                 values.put(ConstantesBaseDatos.TABLE_CARPETA_PATH, fil.getAbsolutePath());
-                values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.open_folder_40);
+                values.put(ConstantesBaseDatos.TABLE_CARPETA_FOTO, R.drawable.folder_picture);
                 carpet.insertarCarpeta(db,values);
 
                 Snackbar.make(view, "Carpeta guardada en menu de navegacion", Snackbar.LENGTH_LONG)

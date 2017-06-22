@@ -4,13 +4,14 @@
     android:id="@+id/viewPagerRecycler"
     android:layout_width="match_parent"
     android:overScrollMode="never"
-    android:layout_height="54dp" >
+    android:layout_height="60dp" >
+
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:id="@+id/primaryContentCardView"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     card_view:cardCornerRadius="@dimen/cardview_default_radius">
 
@@ -22,88 +23,112 @@
         >
 
         <LinearLayout
-        android:background="@android:color/black"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:background="@android:color/black"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:theme="@style/BotonRaised"
+
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
 
             <ImageView
             android:id="@+id/img_nav"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_menu_send"/>
+            android:src="@drawable/ic_menu_send"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                />
             <TextView
             android:id="@+id/text_nav"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:text="Galleria de fotos 1"
             android:textSize="16sp"
-            android:textAlignment="center"
             android:paddingTop="16dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:maxLines="1"
+            android:maxLength="68"
+            android:layout_weight="1"
             android:textColor="@color/Blanco"/>
         </LinearLayout>
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/back_blue"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="35dp"/>
+            android:id="@+id/ly_barra2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="@color/back_blue"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="7dp">
+        </LinearLayout>
     </LinearLayout>
-
 </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/secondaryContentFrameLayout"
+    <android.support.v7.widget.CardView android:id="@+id/secondaryContentFrameLayout"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        card_view:cardCornerRadius="@dimen/cardview_default_radius">
+        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
 
         <LinearLayout android:layout_height="match_parent"
             android:id="@+id/cv_navigator2"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@android:color/black"
+
             >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@android:color/black"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/text_del_nav"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Eliminar Galeria"
-            android:textSize="16sp"
-            android:textAlignment="center"
-            android:paddingTop="16dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="15dp"
-            android:textColor="@color/Blanco"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_height="48dp">
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="40dp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:background="@android:color/black"
+                    android:src="@drawable/left_arrow"/>
+                <TextView
+                    android:id="@+id/text_del_nav"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:text="Eliminar Galeria"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:paddingTop="16dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/Blanco"
+                    android:layout_weight="1"
+                    />
 
-        <ImageButton
-            android:id="@+id/btn1"
-            android:layout_width="48dp"
-            android:layout_gravity="right"
-            android:layout_height="48dp"
-            android:text="Button1"
-            android:background="@color/back_blue"
-            android:scaleType="centerCrop"
-            android:src="@drawable/papeleraroja"/>
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/back_blue"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="35dp"/>
+                <ImageButton
+                    android:id="@+id/btn1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/papeleraroja"
+                    android:background="@android:color/black"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ly_barra3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/back_blue"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="7dp">
+            </LinearLayout>
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
 </android.support.v4.view.ViewPager>

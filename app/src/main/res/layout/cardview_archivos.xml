@@ -18,10 +18,10 @@
     >
     <ImageView
         android:id="@+id/Item_nav_archivo"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/open_folder_40"
+        android:src="@drawable/folder_blue"
         android:layout_marginLeft="5dp" />
     <TextView
         android:id="@+id/text_nav_archivo"
@@ -48,5 +48,6 @@
         android:background="@color/back_blue"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="7dp"></LinearLayout>
+        android:layout_marginTop="7dp">
+    </LinearLayout>
 </LinearLayout>

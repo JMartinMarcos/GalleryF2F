@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            tools:ignore="UselessParent"
+            android:layout_marginTop="@dimen/item_margin">
             <Button
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="30dp"
@@ -102,6 +103,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/trash_48"
                 android:onClick="borrarImagen"/>
+            <Button
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
             <Button
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="30dp"

@@ -85,11 +85,14 @@ public class FullscreenActivity extends BaseActivity {
 
             final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    //        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            }else{
+                intent.putExtra(Intent.EXTRA_STREAM,
+                        FileProvider.getUriForFile(FullscreenActivity.this,
+                                BuildConfig.APPLICATION_ID + ".provider", file));
+            }
 
-            intent.putExtra(Intent.EXTRA_STREAM,
-                             FileProvider.getUriForFile(FullscreenActivity.this,
-                                                        BuildConfig.APPLICATION_ID + ".provider", file));
             intent.setType("image/*");
             startActivity(intent);
 
@@ -158,9 +161,13 @@ public class FullscreenActivity extends BaseActivity {
         File file = new File(fotos.get(imagePos).getImagen());
         solicitarPermisoWrite();
         Intent editIntent = new Intent(Intent.ACTION_EDIT);
-    //    editIntent.setDataAndType( Uri.fromFile(file), "image/*");
-        editIntent.setDataAndType(FileProvider.getUriForFile(FullscreenActivity.this,
-                BuildConfig.APPLICATION_ID + ".provider", file), "image/*");
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP){
+            editIntent.setDataAndType( Uri.fromFile(file), "image/*");
+        }else{
+            editIntent.setDataAndType(FileProvider.getUriForFile(FullscreenActivity.this,
+                    BuildConfig.APPLICATION_ID + ".provider", file), "image/*");
+        }
 
         editIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         startActivity(Intent.createChooser(editIntent, null));

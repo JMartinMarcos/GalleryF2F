@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -78,6 +79,9 @@ public class MainActivity extends BaseActivity {
         generaLinearLayaut();
         final NavAdapterRV navAdapterRV = crearAdaptador(defaultDir);
         inicializaeAdaptador(navAdapterRV);
+
+        listaArch.setItemAnimator(new DefaultItemAnimator());
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,10 +199,10 @@ public class MainActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+     /*   if (id == R.id.action_settings) {
             return true;
         }
-
+*/
         return super.onOptionsItemSelected(item);
     }
 
